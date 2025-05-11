@@ -1,0 +1,213 @@
+
+  .backgrounds{
+    background-color: white;
+    color: black;
+  }
+
+  .container{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Changed from height to min-height */
+    justify-content: flex-start; /* No vertical center */
+    align-items: center;
+    /* padding: 20px; */
+    position: relative;
+    
+  }
+  form{
+    padding: 30px;
+    border-radius: 12px;
+    /* box-shadow: 11px 12px 19px 7px #c59867; */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 6000px;
+    gap: 16px; /* spacing between elements */
+    /* ✅ makes it fit screen */
+  /* overflow-y: auto;  ✅ adds scroll if too long */
+  }
+
+  .invoice-box {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 10px;
+    border: 1px solid #000;
+    font-size: 14px;
+    font-family: 'Arial', sans-serif;
+  }
+  .center {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 3px 0;
+    margin-top: -15px;
+  }
+  .first{
+margin-top: -15px;
+    padding-right: 20px;
+    text-align: left;
+    box-sizing: border-box; 
+    
+  }
+  .name {
+    padding-top: 4px;
+  }
+
+  .boxer {
+    margin-top: -11px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+  }
+
+  .row {
+    margin-top: -19px;
+    /* margin-bottom: 10px; */
+    padding: 20px;
+    border: 1px solid rgb(0, 0, 0);
+    position: relative;
+    min-height: 700px; /* temporary for testing */
+
+  }
+
+  .vertical-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 420px;
+    z-index: 0;
+    border: 1px solid  rgba(14, 13, 13, 0.719)
+
+  }
+  
+
+  .row-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex: 1;
+    align-items: flex-start;
+    box-sizing: border-box;
+  }
+  .row-details > div:first-child {
+    width: 60%;
+    padding-right: 20px;
+    text-align: left;
+    box-sizing: border-box;
+    
+  }
+
+  .box1 {
+    /* margin-top: -12px;
+    padding-top: 3px; */
+    width: 40%;
+    padding-left: 25px;
+    text-align: left;
+    box-sizing: border-box;
+  }
+
+  .right-table {
+    position: absolute;
+    left: 62.1%; /* Same as your vertical line */
+    width: auto; /* Adjust this as needed */
+    margin-top: 1px;
+  }
+  .hr1{
+    border: 1px solid rgba(14, 13, 13, 0.719);
+    position: relative;
+    top: 30px;
+  }
+.hr{
+  border: 1px solid  rgba(14, 13, 13, 0.719);
+
+}
+  table {
+    width: 100%;
+    border: 1px solid #000;
+    border-collapse: collapse;
+    word-wrap: break-word;
+    
+    
+  
+
+  }
+  .goods-table-wrapper {
+    margin-top: 40px; /* Or padding-top if needed */
+  }
+
+  td, th {
+    font-size: 12.5px;
+    border: 1px solid #000;
+    padding: 6px;
+    vertical-align: top;
+    text-align: left;
+    word-wrap: break-word;
+    /* word-break: break-word; */
+    /* white-space: normal; */
+    /* padding: 8px; */
+  }
+  .td{
+        max-width: 15%;
+  }
+  .td1{
+    max-width: 12.5%;
+  }
+
+  .headings {
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .address, .email, .phone, .GST {
+    
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .goods-table {
+    margin-top: 10px;
+  }
+  @media print {
+    body {
+      font-family: 'Arial', sans-serif;
+      font-size: 12pt;
+      line-height: 1.5;
+    }
+    .hr1{
+      border: 1px solid rgba(14, 13, 13, 0.719);
+      position: relative;
+      top: 30px;
+    }
+    .invoice-box {
+      margin-right: 0.1in; /* Adjust as needed */
+      box-sizing: border-box;
+        padding-left: 0.2in;
+    }
+.vertical-line{
+  position: absolute;
+  height: 430px;
+}
+.goods-table-wrapper {
+  margin-top: 40px; /* Or padding-top if needed */
+}
+
+
+    /* Hide unnecessary content on the print page */
+    /* .no-print {
+      display: none;
+    } */
+    @page{
+      margin: 0.1in;
+    
+    }
+    .td1{
+      max-width: 1%;
+    }
+    .td{
+      max-width: 1%;
+    }
+   
+
+  }

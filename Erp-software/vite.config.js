@@ -1,22 +1,13 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import path from "path"
+import react from "@vitejs/plugin-react"
+import { defineConfig } from "vite"
 
 // https://vite.dev/config/
 export default defineConfig({
-  server: {
-    headers: {
-      'X-Frame-Options': 'DENY',  // This could stop unwanted content in your footer
+  plugins: [react()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
     },
   },
-  plugins: [
-    {
-      name: 'no-vite-footer',
-      enforce: 'post',
-      transformIndexHtml(html) {
-        return html.replace(/<script.*?vite[^>]*><\/script>/, '');  // Remove Vite script tags if any
-      },
-    },
-    [react()]
-  ],
-
 })

@@ -1,36 +1,42 @@
+import React from 'react';
+
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 
-import Customers from './Components/Customers/customers.jsx';
-import SendingData from './Components/Customers/SendingData.jsx';
-import SignUp from './Components/SignUp/signUp.jsx';
-import SetEmployee from './Components/Employees/setEmployee.jsx';
-import MyEmployees from './Components/Employees/employees.jsx';
-import Login from './Components/Login/login.jsx';
-import Layout from './Components/Layout/layout.jsx';
-import Dashboard from './Components/Dashboard/dashboard.jsx';
-import Invoice from './Components/invoice/invoiceTemp.jsx';
-import InvoiceGeneration from './Components/invoice/invoiceGeneration.jsx';
+import Customers from './Utils/Customers/customers.jsx';
+import SendingData from './Utils/Customers/SendingData.jsx';
+import SignUp from './Utils/SignUp/signUp.jsx';
+import MyEmployees from './Utils/Employees/employees.jsx';
+import Layout from './Utils/Layout/layout.jsx';
+import Dashboard from './Utils/Dashboard/dashboard.jsx';
+import Invoice from './Utils/invoice/invoiceTemp.jsx';
+import InvoiceGeneration from './Utils/invoice/invoiceGeneration.jsx';
 import './App.css';
+import Login from './Utils/Login/login.jsx';
+import { ThemeProvider } from 'next-themes'
+
+
 
 function App() {
   const [invoiceData, setInvoiceData] = useState(null);
 
-  useEffect(() => {
-    const saved = localStorage.getItem('invoice');
-    if (saved) {
-      try {
-        setInvoiceData(JSON.parse(saved));
-      } catch (error) {
-        console.error("Failed to parse invoice data", error);
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   const saved = localStorage.getItem('invoice');
+  //   if (saved) {
+  //     try {
+  //       setInvoiceData(JSON.parse(saved));
+  //     } catch (error) {
+  //       console.error("Failed to parse invoice data", error);
+  //     }
+  //   }
+  // }, []);
 
   return (
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login/>} />
         <Route path="/signup" element={<SignUp />} />
 
         <Route path="/invoice" element={<Invoice invoice={invoiceData} />} />
@@ -39,29 +45,18 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/Customers" element={<Customers />} />
           <Route path="/customerData" element={<SendingData />} />
-          <Route path="/employee/fillDetails" element={<SetEmployee />} />
           <Route path="/employee" element={<MyEmployees />} />
-          <Route path="/invoice-creation" element={<InvoiceGeneration/>} />
+          <Route path="/invoice-creation" element={<InvoiceGeneration  onGenerate={setInvoiceData}/>} />
 
           {/* Invoice Form */}
-          <Route path="/fill-invoice" element={<InvoiceFormWrapper setInvoiceData={setInvoiceData} />} />
         </Route>
       </Routes>
     </Router>
+    </ThemeProvider>
+
   );
 }
 
-// Wrapper to handle routing on invoice generation
-function InvoiceFormWrapper({ setInvoiceData }) {
-  const navigate = useNavigate();
 
-  const handleGenerate = (data) => {
-    setInvoiceData(data);
-    localStorage.setItem('invoice', JSON.stringify(data)); // Optionally save the invoice data to localStorage
-    navigate('/invoice');
-  };
-
-  return <InvoiceGeneration onGenerate={handleGenerate} />;
-}
 
 export default App;
